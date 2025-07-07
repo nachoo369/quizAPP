@@ -74,13 +74,13 @@ const dificultad = ref(route.query.dificultad || 'Easy')
 const preguntas = ref([])
 const respuestas = ref([])
 const loading = ref(true)
-const isDarkMode = ref(false); // Estado para controlar el modo oscuro
+const isDarkMode = ref(false);
 
 onMounted(async () => {
   try {
     const { data } = await axios.get('https://quizapi.io/api/v1/questions', {
       headers: {
-        'X-Api-Key': 'bDJkOv2pCgIDiFCWTmGXrefFhIYo9iggsfbbXpJ7'
+        'X-Api-Key': import.meta.env.VITE_QUIZ_API_KEY
       },
       params: {
         category: categoria.value,
@@ -97,7 +97,6 @@ onMounted(async () => {
   }
 });
 
-// Función para obtener y filtrar las respuestas válidas de una pregunta
 function getFilteredAnswers(pregunta) {
   const answersObj = pregunta.answers;
   if (!answersObj || typeof answersObj !== 'object') {
@@ -137,40 +136,25 @@ function verResultado() {
   });
 }
 
-// --- Funcionalidades Adicionales ---
-
-// Botón de volver al inicio
 function goBackToHome() {
   router.push('/');
 }
 
-// Botón de modo oscuro
 function toggleDarkMode() {
   isDarkMode.value = !isDarkMode.value;
-  // Opcional: Si quieres que el modo oscuro persista entre sesiones, usa localStorage
-  // localStorage.setItem('darkMode', isDarkMode.value);
 }
-
-// Opcional: Cargar preferencia de modo oscuro al iniciar
-// onMounted(() => {
-//   const savedDarkMode = localStorage.getItem('darkMode');
-//   if (savedDarkMode === 'true') {
-//     isDarkMode.value = true;
-//   }
-// });
 </script>
 
 <style scoped>
-/* Estilos generales del contenedor de la aplicación y modo oscuro */
 .app-wrapper {
-  min-height: 100vh; /* Asegura que ocupe al menos toda la altura de la ventana */
-  background-color: #f9f9f9; /* Fondo claro por defecto */
+  min-height: 100vh;
+  background-color: #f9f9f9;
   transition: background-color 0.3s ease;
 }
 
 .app-wrapper.dark-mode {
-  background-color: #1a1a1a; /* Fondo oscuro */
-  color: #e0e0e0; /* Texto claro */
+  background-color: #1a1a1a;
+  color: #e0e0e0;
 }
 
 .app-wrapper.dark-mode .quiz-container {
@@ -212,7 +196,7 @@ function toggleDarkMode() {
 }
 
 .app-wrapper.dark-mode .answer-button.selected-answer {
-  background-color: #3498db; /* Mantiene el azul para la selección */
+  background-color: #3498db;
   color: white;
   border-color: #2980b9;
   box-shadow: 0 2px 8px rgba(52, 152, 219, 0.4);
@@ -222,7 +206,6 @@ function toggleDarkMode() {
   background-image: linear-gradient(to right, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
 }
 
-/* Controles superiores */
 .top-controls {
   display: flex;
   justify-content: space-between;
@@ -234,11 +217,11 @@ function toggleDarkMode() {
 
 .right-controls {
   display: flex;
-  gap: 10px; /* Espacio entre los botones de la derecha */
+  gap: 10px;
 }
 
 .control-button {
-  background-color: #6c757d; /* Gris para botones de control */
+  background-color: #6c757d;
   color: white;
   border: none;
   border-radius: 8px;
@@ -262,10 +245,9 @@ function toggleDarkMode() {
   transform: translateY(-1px);
 }
 
-/* Estilos específicos del quiz container (ya existentes, solo ajustados) */
 .quiz-container {
   max-width: 800px;
-  margin: 20px auto 40px auto; /* Ajustado el margen superior para dejar espacio a los controles */
+  margin: 20px auto 40px auto;
   padding: 30px;
   background-color: #f9f9f9;
   border-radius: 12px;
@@ -384,7 +366,6 @@ h1 {
   box-shadow: none;
 }
 
-/* Responsividad básica */
 @media (max-width: 768px) {
   .quiz-container {
     margin: 20px;
@@ -406,7 +387,7 @@ h1 {
     justify-content: space-around;
   }
   .control-button {
-    flex: 1; /* Distribuye los botones de control uniformemente */
+    flex: 1;
     padding: 10px 10px;
     font-size: 0.85em;
   }

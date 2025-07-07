@@ -53,7 +53,7 @@ quiz_app/
 
 1. Clona el repositorio o descomprime la carpeta:
    ```bash
-   git clone https://github.com/nachoo369/quiz_app.git
+   git clone https://github.com/nachoo369/Integracion_API.git
    cd quiz_app
    ```
 
