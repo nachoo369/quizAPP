@@ -100,7 +100,7 @@ Puedes agregar imágenes del sistema funcionando si haces una demo o entrega vis
 
 ## 🧠 Autor
 
-Ignacio [Tu Apellido]  
+Ignacio riffo
 Proyecto Final - Curso Frontend  
 Julio 2025
 
